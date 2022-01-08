@@ -1,0 +1,42 @@
+   #A Python Function to Print all of the attributes of a class
+   
+   from pprint import pprint
+   from inspect import getmembers
+   from types import FunctionType
+   def attributes(obj):
+        disallowed_names = {
+            name for name, value in getmembers(type(obj))
+            if isinstance(value, FunctionType)}
+        return {
+            name: getattr(obj, name) for name in dir(obj)
+            if name[0] != '_' and name not in disallowed_names and hasattr(obj, name)}
+
+    def print_attributes(obj):
+        pprint(attributes(obj))
+    print_attributes(dataset)
+    
+    
+    
+    Sample OutPut
+<class 'torch_geometric.datasets.wikics.WikiCS'>
+{'data': Data(x=[11701, 300], edge_index=[2, 297110], y=[11701], train_mask=[11701, 20], val_mask=[11701, 20], test_mask=[11701], stopping_mask=[11701, 20]),
+ 'functions': {'concat': functools.partial(<function Dataset.register_datapipe_as_function.<locals>.class_function at 0x000001E86B343550>, <class 'torch.utils.data.datapipes.map.combining.ConcaterMapDataPipe'>, False),
+               'map': functools.partial(<function Dataset.register_datapipe_as_function.<locals>.class_function at 0x000001E86B3431F0>, <class 'torch.utils.data.datapipes.map.callable.MapperMapDataPipe'>, False)},
+ 'num_classes': 10,
+ 'num_edge_features': 0,
+ 'num_features': 300,
+ 'num_node_features': 300,
+ 'pre_filter': None,
+ 'pre_transform': None,
+ 'processed_dir': 'C:\\Users\\AdnanAli\\datasets\\WikiCS\\processed',
+ 'processed_file_names': 'data.pt',
+ 'processed_paths': ['C:\\Users\\AdnanAli\\datasets\\WikiCS\\processed\\data.pt'],
+ 'raw_dir': 'C:\\Users\\AdnanAli\\datasets\\WikiCS\\raw',
+ 'raw_file_names': ['data.json'],
+ 'raw_paths': ['C:\\Users\\AdnanAli\\datasets\\WikiCS\\raw\\data.json'],
+ 'register_datapipe_as_function': <bound method Dataset.register_datapipe_as_function of <class 'torch_geometric.datasets.wikics.WikiCS'>>,
+ 'register_function': <bound method Dataset.register_function of <class 'torch_geometric.datasets.wikics.WikiCS'>>,
+ 'root': 'C:\\Users\\AdnanAli\\datasets\\WikiCS',
+ 'slices': None,
+ 'transform': None,
+ 'url': 'https://github.com/pmernyei/wiki-cs-dataset/raw/master/dataset'}
