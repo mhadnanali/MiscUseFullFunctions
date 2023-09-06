@@ -7,3 +7,8 @@ Details: https://youtu.be/4PYEhJxLeHE
 Twitter User Timeline download. (Jupyter Notebook, Also have google colab code)
 
 FileName: TwitterUsersDownload.ipynb
+
+
+# Text to speech with Google TTS
+
+FileName: TextToSpeech.ipynb
